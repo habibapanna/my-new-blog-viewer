@@ -1,24 +1,21 @@
 import Link from "next/link";
-import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 export default function Home({ posts }) {
   return (
     <div className="bg-gray-100 min-h-screen py-10">
       <div className="container mx-auto px-4">
-        {/* Add login and register buttons */}
-        <div className="flex justify-end mb-4">
-          <LoginLink>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition mr-2">
-              Sign In
-            </button>
-          </LoginLink>
-          <RegisterLink>
-            <button className="bg-green-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-green-700 transition">
-              Sign Up
-            </button>
-          </RegisterLink>
-        </div>
+        {/* Header with Navigation Links */}
+        <header className="mb-6">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-4">
+              <Link href="/profile">
+                Profile
+              </Link>
+            </div>
+          </div>
+        </header>
 
+        {/* Main Content */}
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Blog Posts</h1>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
