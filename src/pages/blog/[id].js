@@ -4,15 +4,17 @@ import { useRouter } from 'next/router';
 export default function BlogDetails({ post }) {
   const router = useRouter();
 
-  // If the page is still loading
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
+    <div className="container mx-auto p-6">
+      <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+      <p className="text-gray-700 text-lg">{post.body}</p>
+      <button onClick={() => router.push('/')} className='mt-6 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded'>
+      Back to Home
+      </button>
     </div>
   );
 }
