@@ -8,9 +8,7 @@ export default function Home({ posts }) {
         <header className="mb-6">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <Link href="/profile">
-                Profile
-              </Link>
+              <Link href="/profile">Profile</Link>
             </div>
           </div>
         </header>
@@ -27,9 +25,12 @@ export default function Home({ posts }) {
                 <h2 className="text-xl font-semibold text-gray-800 hover:text-blue-600 transition mb-4">
                   {post.title}
                 </h2>
-                <p className="text-gray-600 text-sm">
-                  Click to read more about this post.
-                </p>
+                {/* Visible Clickable Button */}
+                <div className="mt-4">
+                  <button className="bg-blue-600 text-white px-6 py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500 transition">
+                    Read More
+                  </button>
+                </div>
               </Link>
             </li>
           ))}
