@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router'; // Import useRouter hook
 import '../styles/globals.css';
-import { LoginLink, LogoutLink, RegisterLink } from '@kinde-oss/kinde-auth-nextjs';
+import { LoginLink } from '@kinde-oss/kinde-auth-nextjs';
 
 
 function MyApp({ Component, pageProps }) {
@@ -25,33 +25,12 @@ function MyApp({ Component, pageProps }) {
             <Link href="/" className={`transition px-4 ${isActive('/')}`}>
               Home
             </Link>
-            <Link href="/profile" className={`transition px-4 ${isActive('/profile')}`}>
+            <LoginLink>
+            <button>
               Profile
-            </Link>
-          </div>
-          {/* Right Side (Login/Logout Links) */}
-          <div className="space-x-6">
-            {isAuthenticated ? (
-              <LogoutLink>
-                <button className="bg-red-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-700 transition">
-                  Logout
-                </button>
-              </LogoutLink>
-            ) : (
-              <>
-                <LoginLink>
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition">
-                    Sign In
-                  </button>
-                </LoginLink>
-                <RegisterLink>
-                  <button className="bg-green-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-green-700 transition">
-                    Sign Up
-                  </button>
-                </RegisterLink>
-              </>
-            )}
-          </div>
+            </button>
+            </LoginLink>
+          </div> 
         </nav>
       </header>
       <main className="container min-h-screen mx-auto px-6 py-8">
