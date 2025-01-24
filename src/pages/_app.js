@@ -1,17 +1,14 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router'; // Import useRouter hook
+import { useRouter } from 'next/router';
 import '../styles/globals.css';
-import { LoginLink } from '@kinde-oss/kinde-auth-nextjs';
-
+import { LoginLink, LogoutLink, useKindeAuth } from '@kinde-oss/kinde-auth-nextjs';
 
 function MyApp({ Component, pageProps }) {
-  // Simulate checking user authentication status
-  const isAuthenticated = false; // Replace with actual authentication check
-
-  const router = useRouter(); // Get the current route
+  const { isAuthenticated, user } = useKindeAuth(); // Use Kinde Auth to get authentication status
+  const router = useRouter();
 
   // Function to determine if the link is active
-  const isActive = (path) => router.pathname === path ? 'text-yellow-400' : 'text-gray-300'; // Active link color
+  const isActive = (path) => (router.pathname === path ? 'text-yellow-400' : 'text-gray-300');
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-gray-100">
@@ -25,12 +22,29 @@ function MyApp({ Component, pageProps }) {
             <Link href="/" className={`transition px-4 ${isActive('/')}`}>
               Home
             </Link>
-            <LoginLink>
-            <button>
+            <Link href="/profile" className={`transition px-4 ${isActive('/profile')}`}>
               Profile
-            </button>
-            </LoginLink>
-          </div> 
+            </Link>
+          </div>
+          {/* Authentication Buttons */}
+          <div>
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4">
+                <span className="text-sm text-gray-300">{user?.email}</span>
+                <LogoutLink>
+                  <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                    Logout
+                  </button>
+                </LogoutLink>
+              </div>
+            ) : (
+              <LoginLink>
+                <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                  Login
+                </button>
+              </LoginLink>
+            )}
+          </div>
         </nav>
       </header>
       <main className="container min-h-screen mx-auto px-6 py-8">
