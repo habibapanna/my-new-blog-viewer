@@ -1,20 +1,30 @@
-
 import { useRouter } from 'next/router';
 
 export default function BlogDetails({ post }) {
   const router = useRouter();
 
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <div className="text-center font-bold text-xl text-gray-600">Loading... Please wait...</div>;
   }
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-      <p className="text-gray-700 text-lg">{post.body}</p>
-      <button onClick={() => router.push('/')} className='mt-6 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded'>
-      Back to Home
-      </button>
+    <div className="container mx-auto p-8 max-w-4xl bg-white rounded-lg shadow-lg my-8">
+      <h1 className="text-5xl font-extrabold text-gray-800 mb-6 tracking-wide">
+        {post.title}
+      </h1>
+      <p className="text-lg text-gray-600 leading-relaxed mb-6">
+        {post.body}
+      </p>
+
+      <div className="flex justify-between items-center mt-8">
+        <button 
+          onClick={() => router.push('/')} 
+          className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md shadow-lg transform transition-all hover:scale-105 hover:bg-indigo-700"
+        >
+          Back to Home
+        </button>
+        <div className="text-sm text-gray-500">Published on: {new Date().toLocaleDateString()}</div>
+      </div>
     </div>
   );
 }
