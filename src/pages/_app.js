@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router'; // Import useRouter hook
 import '../styles/globals.css';
-import { RegisterLink, LoginLink, LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
+import { LoginLink, LogoutLink, RegisterLink } from '@kinde-oss/kinde-auth-nextjs';
+
 
 function MyApp({ Component, pageProps }) {
   // Simulate checking user authentication status
